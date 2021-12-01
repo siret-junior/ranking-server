@@ -4,7 +4,7 @@ First create a new folder for CLIP data:
 mkdir clip_data
 ```
 and add the binary file into the newly created folder. Don't forget to update the filename in .env file.
- 
+
 ### Run
 ```
 docker build -t clip-server .
@@ -12,6 +12,7 @@ docker run -d --net host --name clip_server clip-server
 
 # stop
 docker stop -t 1 clip_server
+docker rm clip_server
 ```
 
 ### Debug
@@ -21,6 +22,7 @@ docker run -it --rm --net host clip-server
 
 # stop
 docker stop -t 1 clip_server
+docker rm clip_server
 ```
 
 ### Query server
