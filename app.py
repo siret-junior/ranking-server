@@ -59,4 +59,4 @@ if __name__ == "__main__":
     app.route("/clip/<query>", methods=["GET"])(get_clip)
     app.route("/clip-results/<query>", methods=["GET"])(get_clip_results)
 
-    app.run(port=int(os.getenv('PORT')))
+    app.run(host='0.0.0.0', port=int(os.getenv('PORT')), debug=True)
