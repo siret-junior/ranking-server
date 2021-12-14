@@ -41,13 +41,22 @@ def get_clip_results(query):
 
     # compute clip representation of query and compute similarities with respect to the query
     numpy_response = clip_function(query)
-    cosine_similarities = cosine_similarity(np.array([numpy_response]), clip_features)
+    cosine_similarities = cosine_similarity(np.array([numpy_response]), clip_features)[0]
 
     # take only the N closest results
     how_many = int(os.getenv('HOW_MANY_RESULTS'))
-    first_N_results = np.argsort(cosine_similarities)[0][::-1][:how_many]
+    first_N_results = np.argsort(cosine_similarities)[::-1][:how_many]
+    first_N_similarities = cosine_similarities[first_N_results]
 
-    response = make_response(first_N_results.astype(np.int32).tobytes("C"))
+    # just a check to make sure that the logic is correct
+    # for i in range(len(first_N_similarities)):
+    #     index = first_N_results[i]
+    #     value = first_N_similarities[i]
+    #     if cosine_similarities[index] != value:
+    #         print("error!")
+
+    response = make_response(first_N_results.astype(np.int32).tobytes("C") +
+                             first_N_similarities.astype(np.float32).tobytes("C"))
     response.headers.set("Content-Type", "application/octet-stream")
     return response
 
