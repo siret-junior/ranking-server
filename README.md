@@ -35,3 +35,6 @@ curl -v http://localhost:5354/clip/my%20text%20query
 curl -v http://localhost:5354/clip-results/my%20text%20query
 ```
 - returns int32 vector of size 10000 of sorted indexes of the most similar frames
+
+### Data
+Before running the server, you need to create a directory `clip_data/` and copy CLIP feature data there. Don't forget to update path to the data in the `.env` file!
