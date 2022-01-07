@@ -7,8 +7,8 @@ and add the binary file into the newly created folder. Don't forget to update th
 
 ### Run
 ```
-docker build -t clip-server .
-docker run -d --net host --name clip_server clip-server
+docker build -t ranking-server .
+docker run -p 8083:8083 ranking-server
 
 # stop
 docker stop -t 1 clip_server

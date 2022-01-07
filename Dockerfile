@@ -1,6 +1,6 @@
 FROM continuumio/miniconda3:4.9.2
 
-RUN apt-get update && apt-get install -y g++
+RUN apt-get --allow-releaseinfo-change update && apt-get install -y g++
 
 RUN pip install \
         flask \
