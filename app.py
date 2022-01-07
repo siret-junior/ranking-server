@@ -48,13 +48,6 @@ def get_clip_results(query):
     first_N_results = np.argsort(cosine_similarities)[::-1][:how_many]
     first_N_similarities = cosine_similarities[first_N_results]
 
-    # just a check to make sure that the logic is correct
-    # for i in range(len(first_N_similarities)):
-    #     index = first_N_results[i]
-    #     value = first_N_similarities[i]
-    #     if cosine_similarities[index] != value:
-    #         print("error!")
-
     response = make_response(first_N_results.astype(np.int32).tobytes("C") +
                              first_N_similarities.astype(np.float32).tobytes("C"))
     response.headers.set("Content-Type", "application/octet-stream")
