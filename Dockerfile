@@ -25,9 +25,9 @@ RUN mkdir -p /root/.cache/torch/pytorch_fairseq \
  && wget -q https://dl.fbaipublicfiles.com/fairseq/gpt2_bpe/vocab.bpe \
          -O b04a6d337c09f464fe8f0df1d3524db88a597007d63f05d97e437f65840cdba5.939bed25cbdab15712bac084ee713d6c78e221c5156c68cb0076b03f5170600f
 
-COPY app.py /ranking-server/app.py
-COPY clip_data /ranking-server/clip_data
-COPY .env /ranking-server/.env
+# COPY app.py /ranking-server/app.py
+# COPY clip_data /ranking-server/clip_data
+# COPY .env /ranking-server/.env
 
 WORKDIR /ranking-server
 

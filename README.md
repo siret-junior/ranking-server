@@ -10,7 +10,7 @@ First create a new folder called `clip_data` and add the binary file with frame 
 ## **Build & Run with Docker (recommended)**
 ```sh
 docker build -t ranking-server .
-docker run -p 8083:8083 ranking-server
+docker run  --rm -ti -p 8083:8083 -v ${PWD}:/ranking-server ranking-server sh run.sh
 ```
 
 ## **Build & Run**
