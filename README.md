@@ -1,31 +1,25 @@
-### Data
-First create a new folder for CLIP data:
-```
-mkdir clip_data
-```
-and add the binary file into the newly created folder. Don't forget to update the filename in .env file.
+# Ranking Server
+Embeds the text queries into repsective spaces and computes scores for given queries.
 
-### Run
-```
+This is part of the [SOMHunter](https://github.com/siret-junior/somhunter) project. But is not dependant on in in any way since it is used by other tools as well (e.g. CVHunter). Therefore you must provide data and confgure this server separately.
+
+
+## Data & Configuration
+First create a new folder called `clip_data` and add the binary file with frame features in it. Don't forget to update the filename in .env file as well.
+
+## **Build & Run with Docker (recommended)**
+```sh
 docker build -t ranking-server .
 docker run -p 8083:8083 ranking-server
-
-# stop
-docker stop -t 1 clip_server
-docker rm clip_server
 ```
 
-### Debug
-```
-docker build -t clip-server .
-docker run -it --rm --net host clip-server
-
-# stop
-docker stop -t 1 clip_server
-docker rm clip_server
+## **Build & Run**
+```sh
+sh install.sh
+sh run.sh
 ```
 
-### Query server
+## How to Query the Server
 ```
 curl -v http://localhost:5354/clip/my%20text%20query
 ```

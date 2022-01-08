@@ -29,6 +29,8 @@ COPY app.py /app/app.py
 COPY clip_data /app/clip_data
 COPY .env /app/.env
 
-
 WORKDIR /app
+
+EXPOSE 8083
+
 CMD ["python", "app.py"]
