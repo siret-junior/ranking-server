@@ -82,4 +82,8 @@ if __name__ == "__main__":
     app.route("/clip/<query>", methods=["GET"])(get_clip)
     app.route("/clip-results/<query>", methods=["GET"])(get_clip_results)
 
-    app.run(host='0.0.0.0', port=int(os.getenv('PORT')), debug=True)
+    env_type = os.getenv('ENV')
+    debug = True if env_type == "debug" else False
+    app.debug = debug
+
+    app.run(host='0.0.0.0', port=int(os.getenv('PORT')), debug=debug)
