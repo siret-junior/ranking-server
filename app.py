@@ -25,6 +25,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 
 app = Flask(__name__)
 clip_function = None
+# CLIP normalized features
 clip_features = None
 
 
@@ -45,6 +46,8 @@ def load_clip_features():
     dim = int(os.getenv('CLIP_DIMENSION'))
     features_amount = len(features) / dim
     features = features.reshape(int(features_amount), dim)
+    # Norm the features for faster cos sim
+    features = features / np.linalg.norm(features, axis=-1)[:,np.newaxis]
     return features
 
 def get_clip(query):
@@ -59,7 +62,7 @@ def get_clip_results(query):
 
     # compute clip representation of query and compute similarities with respect to the query
     numpy_response = clip_function(query)
-    cosine_similarities = cosine_similarity(np.array([numpy_response]), clip_features)[0]
+    cosine_similarities = np.dot(clip_features, numpy_response)
 
     # take only the N closest results
     how_many = int(os.getenv('HOW_MANY_RESULTS'))
